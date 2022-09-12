@@ -15,6 +15,6 @@ __debug_bin
 appdata/
 .vscode/
 test-data/
-
+csdb
 # Dependency directories (remove the comment below to include it)
 # vendor/

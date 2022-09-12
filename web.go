@@ -120,12 +120,26 @@ func dataGetHandler(w http.ResponseWriter, r *http.Request) {
 	if len(f) > 0 {
 		v := str2u32(f[0])
 		if v > 0 {
+			if (v>19800101) && (v<20390101) {
+				ds := fmt.Sprintf("%04d-%02d-%02dT00:00:00.000Z",v/10000,(v/100)%100,v%100)
+				ts,	 err := time.Parse("2006-01-02T15:04:05.000Z", ds)
+				if err == nil {
+					v = uint32(ts.Unix())
+				}
+			}
 			ft = v
 		}
 	}
 	if len(t) > 0 {
 		v := str2u32(f[0])
 		if v > 0 {
+			if (v>19800101) && (v<20390101) {
+				ds := fmt.Sprintf("%04d-%02d-%02dT23:59:59.000Z",v/10000,(v/100)%100,v%100)
+				ts,	 err := time.Parse("2006-01-02T15:04:05.000Z", ds)
+				if err == nil {
+					v = uint32(ts.Unix())
+				}
+			}
 			tt = v
 		}
 	}
